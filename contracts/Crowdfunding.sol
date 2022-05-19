@@ -34,5 +34,11 @@ contract Crowdfunding {
         if (contributors[msg.sender] == 0) {
             numberOfContributors++;
         }
+        contributors[msg.sender] = contributors[msg.sender] + msg.value;
+        raisedAmount = raisedAmount + msg.value;
+    }
+
+    function getContractBalance() public view returns (uint256) {
+        return address(this).balance;
     }
 }
