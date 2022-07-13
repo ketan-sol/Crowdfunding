@@ -3,6 +3,7 @@
 //
 // When running the script with `npx hardhat run <script>` you'll find the Hardhat
 // Runtime Environment's members available in the global scope.
+const { ethers } = require('hardhat');
 const hre = require('hardhat');
 
 async function main() {
@@ -14,7 +15,10 @@ async function main() {
   // await hre.run('compile');
   // We get the contract to deploy
   const Crowdfunding = await hre.ethers.getContractFactory('Crowdfuning');
-  const funding = await Crowdfunding.deploy();
+  const target = 100;
+  const deadline = 10;
+  const minContribution = 10;
+  const funding = await Crowdfunding.deploy(target, deadline, minContribution);
 
   await funding.deployed();
 
